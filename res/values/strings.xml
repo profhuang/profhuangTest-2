@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, profhuangTest2Activity!</string>
+    <string name="app_name">profhuangTest2</string>
+
+    <string-array name="planets">
+	<item>Mercury</item>
+	<item>Venus</item>
+	<item>Earth</item>
+	<item>Mars</item>
+	<item>Jupiter</item>
+	<item>Saturn</item>
+	<item>Uranus</item>
+	<item>Neptune</item>
+	</string-array>
+
+</resources>
