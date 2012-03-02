@@ -18,7 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//commit by git first 334455667788
+//commit by git first 33445566778899
 public class profhuangTest2Activity extends Activity {
     /** Called when the activity is first created. */
     @Override
