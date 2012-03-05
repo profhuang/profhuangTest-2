@@ -17,10 +17,10 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int button1=0x7f070004;
+        public static final int button1=0x7f070006;
         public static final int checkBox1=0x7f070008;
-        public static final int editText1=0x7f070005;
-        public static final int imageButton1=0x7f070006;
+        public static final int editText1=0x7f070004;
+        public static final int imageButton1=0x7f070005;
         public static final int imageView1=0x7f07000d;
         public static final int menuGroup_Main=0x7f07000e;
         public static final int menu_clear=0x7f070011;
