@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -73,19 +75,37 @@ public class profhuangTest2Activity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
 	    super.onCreateOptionsMenu(menu);
 	    
-	    menu.add(1, 1, 1, "Invoke WebBrowser");
-	    menu.add(2, 2, 2, "Invoke Map");
-	    menu.add(3, 3, 3, "Invoke Contact");
-	    menu.add(4, 4, 4, "Invoke CMail");
-	    menu.add(5, 5, 5, "Invoke Tel");
-	    menu.add(6, 6, 6, "Invoke Search");
+	    int base=Menu.FIRST;
+	    menu.add(base, 1, 1, "Invoke WebBrowser");
+	    menu.add(base, 2, 2, "Invoke Map");
+	    menu.add(base, 3, 3, "Invoke Contact");
+	    menu.add(base, 4, 4, "Invoke CMail");
+	    menu.add(base, 5, 5, "Invoke Tel");
+	    menu.add(base, 6, 6, "Invoke Search");
+	    
+	    //Sample of Submenu
+	    /*	   
+	    base=Menu.FIRST + 100;
+	    SubMenu sm = menu.addSubMenu(base,base+1,Menu.NONE,"submenu");
+	    sm.add(base,base+2,base+2,"sub item1");
+	    sm.add(base,base+3,base+3, "sub item2");
+	    sm.add(base,base+4,base+4, "sub item3");
+	    //sm.setIcon(R.drawable.icon48x48_1);
+	    */
+	    
+	    //Sample of Menu from XML
+	    /*
+	    MenuInflater inflater = getMenuInflater(); //from activity
+	    inflater.inflate(R.menu.my_menu, menu);
+	    */
+	    
 	    return true;
     }
     
     @Override
     //Sample of Invoke Web Browser/Map/Tel/Pick
     public boolean onOptionsItemSelected(MenuItem item) {
-    	if (item.getItemId() == 1) {
+    	if (item.getItemId() == 1) { // == R.id.menu_dial
     		//Web
     		Intent intent = new Intent(Intent.ACTION_VIEW);
     		intent.setData(Uri.parse("http://www.google.com"));
