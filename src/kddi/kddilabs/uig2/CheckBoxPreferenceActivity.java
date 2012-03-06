@@ -15,7 +15,7 @@ public class CheckBoxPreferenceActivity extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.chkbox);
 		//PreferenceManager.setDefaultValues(this, R.xml.flightoptions, false);
 		
-		//Sample of Get Preference for check out test 111 222 333
+		//Sample of Get Preference for check out test 111 222 333 44
 		getPreferenceManager();
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		boolean option = prefs.getBoolean("show_price_column_pref", false);
