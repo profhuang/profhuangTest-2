@@ -1,10 +1,21 @@
 package kddi.kddilabs.uig2;
 
+import java.io.IOException;
+
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.PhoneLookup;
@@ -41,6 +52,14 @@ public class profhuangTest2Activity extends Activity {
 	            intent.putExtras(bundle);
 		      	startActivity(intent);
 		      	//profhuangTest2Activity.this.finish(); 
+		    }        
+	    });
+        
+        Button btn2 = (Button)this.findViewById(R.id.button2);
+        btn2.setOnClickListener(new View.OnClickListener() {
+		    public void onClick(View v) {
+		    	//new myHttpGet().execute("http://www.google.co.jp");
+		    	new GrabURL().execute("http://www.google.co.jp");
 		    }        
 	    });
         
@@ -151,7 +170,7 @@ public class profhuangTest2Activity extends Activity {
 	    
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data)
-      { 	
+    { 	
 		//Sample of Pick Data Return From Contacts Activity 
     	super.onActivityResult(reqCode, resultCode, data); 
 		    switch (reqCode) {
@@ -171,5 +190,49 @@ public class profhuangTest2Activity extends Activity {
 		         default:
 		        	 break;
 		    }
-       	} 
-    }
+    } 
+    
+	/****************************************
+	 * 
+	 * Sample of innernal HTTP in AsyncTask: ok
+	   Another sample is myHTTPGet outside
+	 *
+	 */
+	private class GrabURL extends AsyncTask<String, Void, Void> {
+	    private final HttpClient Client = new DefaultHttpClient();
+	    private String Content;
+	    private String Error = null;
+	    private ProgressDialog Dialog = new ProgressDialog(profhuangTest2Activity.this);
+	    
+	    protected void onPreExecute() {
+	        Dialog.setMessage("Downloading source..");
+	        Dialog.show();
+	    }
+	
+	    protected Void doInBackground(String... urls) {
+	        try {
+	            HttpGet httpget = new HttpGet(urls[0]);
+	            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+	            Content = Client.execute(httpget, responseHandler);
+	        } catch (ClientProtocolException e) {
+	            Error = e.getMessage();
+	            cancel(true);
+	        } catch (IOException e) {
+	            Error = e.getMessage();
+	            cancel(true);
+	        }
+	        
+	        return null;
+	    }
+	    
+	    protected void onPostExecute(Void unused) {
+	        Dialog.dismiss();
+	        if (Error != null) {
+	            Toast.makeText(profhuangTest2Activity.this, Error, Toast.LENGTH_LONG).show();
+	        } else {
+	            Toast.makeText(profhuangTest2Activity.this, "Source: " + Content, Toast.LENGTH_LONG).show();
+	        }
+	    }
+	}
+}
+

@@ -1,5 +1,14 @@
 package kddi.kddilabs.uig2;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class secondActivity  extends Activity implements OnInitListener {
+public class secondActivity extends Activity implements OnInitListener {
 
 	private static final int REQ_TTS_STATUS_CHECK = 0; //”CˆÓ‚Ì’l
 	private TextToSpeech mTts;
@@ -37,6 +46,7 @@ public class secondActivity  extends Activity implements OnInitListener {
 		    }        
 	    });
         
+        //TTS Test
         btn3 = (Button)this.findViewById(R.id.button3);
         btn3.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {
@@ -44,6 +54,14 @@ public class secondActivity  extends Activity implements OnInitListener {
 		    }        
 	    });
         btn3.setEnabled(false);
+        
+        //Sample HTTP Get
+        Button btn4 = (Button)this.findViewById(R.id.button4);
+        btn4.setOnClickListener(new View.OnClickListener() {
+		    public void onClick(View v) {
+		    	new myHttpGet().execute("http://www.google.co.jp");
+		    }        
+	    });
         
         //Check to be sure that TTS exists and is okay to use
         Intent checkIntent = new Intent();
