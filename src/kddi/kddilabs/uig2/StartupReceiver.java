@@ -13,7 +13,7 @@ public class StartupReceiver extends BroadcastReceiver {
     	//receive Android.intent.action.BOOT_COMPLETED
         Intent i = new Intent(context, profhuangTest2Activity.class);  
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);  
-        context.startActivity(i);  
+        context.startActivity(i); //startService etc.  
     }  
   
 }  
