@@ -40,11 +40,17 @@
             android:text="Black" />
     </RadioGroup>
 
-    <ImageView
-        android:id="@+id/imageView1"
+    <Button
+        android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher" />
+        android:text="Preference..." />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TTS Test" />
 
     <Button
         android:id="@+id/button1"
